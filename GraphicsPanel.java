@@ -1,7 +1,7 @@
 
     
 // Project: Chess
-// Written by: Jack Shapiro, Nico Mihailidis, Carlo Favaro, Daniel Rosen
+// Written by: Jack Shapiro, Niko, Carlo Favaro, Daniel Rosen
 // Date: 2/28/19
 // Description: This project simulates the game of chess. The board is an array, with various child classes of the "Piece" class
 		//representing all of the chess pieces.	
@@ -38,37 +38,37 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 		this.addMouseListener(this);
 
 		board[0][0] = new Rook(1);
-		board[0][1] = new Knight(1);
-		board[0][2] = new Bishop(1);
-		board[0][3] = new Queen(1);
-		board[0][4] = new King(1);
-		board[0][5] = new Bishop(1);
-		board[0][6] = new Knight(1);
-		board[0][7] = new Rook(1);
-		board[1][0] = new Pawn(1);
+		board[1][0] = new Knight(1);
+		board[2][0] = new Bishop(1);
+		board[3][0] = new Queen(1);
+		board[4][0] = new King(1);
+		board[5][0] = new Bishop(1);
+		board[6][0] = new Knight(1);
+		board[7][0] = new Rook(1);
+		board[0][1] = new Pawn(1);
 		board[1][1] = new Pawn(1);
-		board[1][2] = new Pawn(1);
-		board[1][3] = new Pawn(1);
-		board[1][4] = new Pawn(1);
-		board[1][5] = new Pawn(1);
-		board[1][6] = new Pawn(1);
-		board[1][7] = new Pawn(1);
-		board[7][0] = new Rook(2);
-		board[7][1] = new Knight(2);
-		board[7][2] = new Bishop(2);
-		board[7][3] = new Queen(2);
-		board[7][4] = new King(2);
-		board[7][5] = new Bishop(2);
-		board[7][6] = new Knight(2);
-		board[7][7] = new Rook(1);
-		board[6][0] = new Pawn(2);
-		board[6][1] = new Pawn(2);
-		board[6][2] = new Pawn(2);
-		board[6][3] = new Pawn(2);
-		board[6][4] = new Pawn(2);
-		board[6][5] = new Pawn(2);
+		board[2][1] = new Pawn(1);
+		board[3][1] = new Pawn(1);
+		board[4][1] = new Pawn(1);
+		board[5][1] = new Pawn(1);
+		board[6][1] = new Pawn(1);
+		board[7][1] = new Pawn(1);
+		board[0][7] = new Rook(2);
+		board[1][7] = new Knight(2);
+		board[2][7] = new Bishop(2);
+		board[3][7] = new Queen(2);
+		board[4][7] = new King(2);
+		board[5][7] = new Bishop(2);
+		board[6][7] = new Knight(2);
+		board[7][7] = new Rook(2);
+		board[0][6] = new Pawn(2);
+		board[1][6] = new Pawn(2);
+		board[2][6] = new Pawn(2);
+		board[3][6] = new Pawn(2);
+		board[4][6] = new Pawn(2);
+		board[5][6] = new Pawn(2);
 		board[6][6] = new Pawn(2);
-		board[6][7] = new Pawn(2);
+		board[7][6] = new Pawn(2);
 		// instantiate the instance variables.
 	}
 
@@ -78,6 +78,9 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 	//				and checks if the game is over by checking for the death of one king and the life of the other,
 	// parameters: Graphics g - This object is used to draw your images onto the graphics panel.
 	public void paintComponent(Graphics g) {
+		whiteKingCount = 0;
+		blackKingCount = 0;
+		
 		g2 = (Graphics2D) g;
 
 		// Draw the board
@@ -162,6 +165,7 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 			if (turn == 1) { // white turn
 				if (fromAndToCounter == 0) { // if the user clicks on a "from piece" piece
 					from = new Location(e.getX()/90, e.getY()/90);
+					System.out.println("From: " + from.getRow() + "," + from.getColumn());
 					if (board[from.getRow()][from.getColumn()] != null && board[from.getRow()][from.getColumn()].getPlayer() == 1) {
 						fromAndToCounter++;
 						this.repaint();
@@ -178,6 +182,7 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 						this.repaint();
 					} 
 					else {
+						System.out.println("INVALID MOVE");
 						fromAndToCounter = 0;
 					}
 				}			
