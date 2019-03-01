@@ -1,7 +1,7 @@
 
     
 // Project: Chess
-// Written by: Jack Shapiro, Nico, Carlo Favaro
+// Written by: Jack Shapiro, Nico Mihailidis, Carlo Favaro, Daniel Rosen
 // Date: 2/28/19
 // Description: This project simulates the game of chess. The board is an array, with various child classes of the "Piece" class
 		//representing all of the chess pieces.	
