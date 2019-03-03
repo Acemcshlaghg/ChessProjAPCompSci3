@@ -1,4 +1,4 @@
-//Class: Chess
+//Class: Pawn
 //Written By: Jack Shapiro
 //Date: 2/26/19
 //description: This class extends piece and contains the restrictions of the pawn's moves.
