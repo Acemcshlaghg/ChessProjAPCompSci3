@@ -40,37 +40,37 @@ public class GraphicsPanel extends JPanel implements MouseListener {
 		this.addMouseListener(this);
 
 		board[0][0] = new Rook(2);
-		board[1][0] = new Knight(2);
-		board[2][0] = new Bishop(2);
-		board[3][0] = new Queen(2);
-		board[4][0] = new King(2);
-		board[5][0] = new Bishop(2);
-		board[6][0] = new Knight(2);
-		board[7][0] = new Rook(2);
-		board[0][1] = new Pawn(2);
+		board[0][1] = new Knight(2);
+		board[0][2] = new Bishop(2);
+		board[0][3] = new Queen(2);
+		board[0][4] = new King(2);
+		board[0][5] = new Bishop(2);
+		board[0][6] = new Knight(2);
+		board[0][7] = new Rook(2);
+		board[1][0] = new Pawn(2);
 		board[1][1] = new Pawn(2);
-		board[2][1] = new Pawn(2);
-		board[3][1] = new Pawn(2);
-		board[4][1] = new Pawn(2);
-		board[5][1] = new Pawn(2);
-		board[6][1] = new Pawn(2);
-		board[7][1] = new Pawn(2);
-		board[0][7] = new Rook(1);
-		board[1][7] = new Knight(1);
-		board[2][7] = new Bishop(1);
-		board[3][7] = new Queen(1);
-		board[4][7] = new King(1);
-		board[5][7] = new Bishop(1);
-		board[6][7] = new Knight(1);
+		board[1][2] = new Pawn(2);
+		board[1][3] = new Pawn(2);
+		board[1][4] = new Pawn(2);
+		board[1][5] = new Pawn(2);
+		board[1][6] = new Pawn(2);
+		board[1][7] = new Pawn(2);
+		board[7][0] = new Rook(1);
+		board[7][1] = new Knight(1);
+		board[7][2] = new Bishop(1);
+		board[7][3] = new Queen(1);
+		board[7][4] = new King(1);
+		board[7][5] = new Bishop(1);
+		board[7][6] = new Knight(1);
 		board[7][7] = new Rook(1);
-		board[0][6] = new Pawn(1);
-		board[1][6] = new Pawn(1);
-		board[2][6] = new Pawn(1);
-		board[3][6] = new Pawn(1);
-		board[4][6] = new Pawn(1);
-		board[5][6] = new Pawn(1);
+		board[6][0] = new Pawn(1);
+		board[6][1] = new Pawn(1);
+		board[6][2] = new Pawn(1);
+		board[6][3] = new Pawn(1);
+		board[6][4] = new Pawn(1);
+		board[6][5] = new Pawn(1);
 		board[6][6] = new Pawn(1);
-		board[7][6] = new Pawn(1);
+		board[6][7] = new Pawn(1);
 		// instantiate the instance variables.
 	}
 
@@ -125,8 +125,8 @@ public class GraphicsPanel extends JPanel implements MouseListener {
 
 		for (int i = 0; i < board.length; i++) { // for-loops loop through board and draw all pieces
 			for (int j = 0; j < board[i].length; j++) {
-				if (board[j][i] != null) { // if an actual piece is there
-					board[j][i].draw(g, this, new Location(i, j));
+				if (board[i][j] != null) { // if an actual piece is there
+					board[i][j].draw(g, this, new Location(i, j));
 				}
 			}
 		}
@@ -169,10 +169,10 @@ public class GraphicsPanel extends JPanel implements MouseListener {
 		switch (fromAndToCounter) {
 		case 0:
 			from = new Location(e.getX() / 90, e.getY() / 90);
-
-			if (board[from.getRow()][from.getColumn()] != null
-					&& board[from.getRow()][from.getColumn()].getPlayer() == turn) { // makes sure player clicks their
-																						// own piece
+			System.out.print(from.getRow() + ",");
+			System.out.print(from.getColumn());
+			if (board[from.getColumn()][from.getRow()] != null && board[from.getColumn()][from.getRow()].getPlayer() == turn) { // makes sure player clicks their own piece
+																						 
 				g2.setColor(Color.yellow);
 				g2.drawRect(90 * from.getRow(), 90 * from.getColumn(), 90, 90);// highlights square that piece is on
 				this.repaint();
@@ -185,13 +185,20 @@ public class GraphicsPanel extends JPanel implements MouseListener {
 			break;
 		case 1:
 			to = new Location(e.getX() / 90, e.getY() / 90);
-			if (fromAndToCounter == 1 && board[from.getRow()][from.getColumn()].isValidMove(from, to, board)) {
-				Piece p = board[from.getRow()][from.getColumn()];
-				board[to.getRow()][to.getColumn()] = p;
-				board[from.getRow()][from.getColumn()] = null;
-				this.repaint();
-				fromAndToCounter = 0;
 
+			System.out.print(to.getRow() + ",");
+			System.out.print(to.getColumn());
+			if (fromAndToCounter == 1 && board[from.getColumn()][from.getRow()].isValidMove(from, to, board)) {
+				Piece p = board[from.getColumn()][from.getRow()];
+				board[to.getColumn()][to.getRow()] = p;
+				board[from.getColumn()][from.getRow()] = null;
+				this.repaint();
+				if (turn == 1) {// changes turn to black
+					turn++; 
+				} else if (turn == 2) {// changes turn to white
+					turn--;
+				}
+				fromAndToCounter = 0;
 			} else if (fromAndToCounter == 1) {
 				System.out.println("INVALID MOVE");
 				this.repaint();
