@@ -32,6 +32,8 @@ public class Queen extends Piece{
 		else if(to.getColumn()==from.getColumn() && to.getRow()==from.getRow()){
 			return false;
 		}
+		else if(Math.abs(from.getColumn()-to.getColumn())!= Math.abs(from.getRow()-to.getRow()) || (b[to.getColumn()][to.getRow()]!=null &&b[to.getColumn()][to.getRow()].getPlayer()==getPlayer()))
+				return false;
 		
 		for (int row = 0; row < Math.abs(to.getRow() - from.getRow()); row++) {
 			for (int column = 0; row < Math.abs(to.getColumn() - from.getColumn()); column++) {
