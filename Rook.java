@@ -40,10 +40,11 @@ public class Rook extends Piece {
 		} else if (b[to.getColumn()][to.getRow()] != null
 				&& b[to.getColumn()][to.getRow()].getPlayer() != getPlayer()) {
 			return false;
+		}
 		else if(to.getColumn() != from.getColumn() && to.getRow() != from.getRow()) {
 			return false;
-		}
-		} else if (b[to.getColumn()][to.getRow()] == null) {
+		} 
+		else if (b[to.getColumn()][to.getRow()] == null) {
 			return true;
 		}
 	
