@@ -15,6 +15,7 @@ public class Pawn extends Piece{
 		
 		//white team
 			if((getPlayer() == 1 && 
+				(to.getColumn() < from.getColumn()) &&
 				// moving forward general		
 				(to.getRow() == from.getRow() && to.getColumn() == from.getColumn() - 1 && b[to.getRow()][to.getColumn()] == null) ||
 				// moving forward 2 on first move
@@ -24,7 +25,8 @@ public class Pawn extends Piece{
 				// kill to the left								// makes sure you actually want to kill that piece
 				(b[from.getRow() - 1][from.getColumn() - 1] != null && b[from.getRow() - 1][from.getColumn() - 1].getPlayer() == 1 && (to.getRow() == from.getRow() - 1 && to.getColumn() == from.getColumn() - 1) )) ||		
 		//black team
-				(getPlayer() == 2 && 
+				(getPlayer() == 2 &&
+				(to.getColumn() > from.getColumn()) &&
 				// moving forward general		
 				(to.getRow() == from.getRow() && to.getColumn() == from.getColumn() + 1 && b[to.getRow()][to.getColumn()] == null) ||
 				// moving forward 2 on first move
