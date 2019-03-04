@@ -1,6 +1,7 @@
-import java.net.URL;
-import javax.swing.ImageIcon;
-
+//Class: King
+//Written By: Jack Shapiro
+//Date: 2/26/19
+//description: This class extends piece and contains the restrictions of the king's moves.
 public class King extends Piece{
 
 	public King(int player){
@@ -11,7 +12,7 @@ public class King extends Piece{
 
 		//makes sure king only goes one column at a time or in the same column
 
-		if(b[to.getRow()][to.getColumn()]==null && ((from.getColumn() == to.getColumn() && from.getRow()==(to.getRow()+1) ||  from.getColumn() == to.getColumn() && from.getRow()==(to.getRow()-1) ||
+		if( (b[to.getColumn()][to.getRow()]==null || b[to.getColumn()][to.getRow()].getPlayer() != getPlayer()) && ((from.getColumn() == to.getColumn() && from.getRow()==(to.getRow()+1) ||  from.getColumn() == to.getColumn() && from.getRow()==(to.getRow()-1) ||
 
 				//makes sure king only goes one row at a time or in the same row
 
@@ -40,4 +41,3 @@ public class King extends Piece{
 	}
   
 }
-
