@@ -14,8 +14,7 @@ import javax.swing.ImageIcon;
 public class Piece {
 	private ImageIcon image;			// The ImageIcon will be used to hold the Character's png.
 										// This png must be saved in the images folder and will be loaded 
-										// in the constructor.
-	
+										// in the constructor
 	private int player;					// This int will represent which team the piece is, 1 for yellow team, 
 									    // 2 for black team. 
 	
@@ -54,8 +53,13 @@ public class Piece {
 	// @param - Location to - the location that the piece will be moved to
 	// @param - Piece[][]b - the chess board.  a two dimensional array of pieces.
 	// return - boolean - true if the move is valid 
-	public boolean isValidMove(Location from, Location to, Piece[][]b){
-		return false;
+	public boolean isValidMove(Location from, Location to, Piece[][] b){
+		if (b[to.getRow()][to.getColumn()] == null && b[to.getRow()][to.getColumn()].getPlayer() != getPlayer())
+			return false;
+		else {
+			return true;
+		}
+		
 	}
 	
 	// method: draw
@@ -65,7 +69,7 @@ public class Piece {
 	//			   Component c - this is the component that the image will be drawn onto.
 	//			   Location l - a Location that determines where to draw the piece.
 	public void draw(Graphics g, Component c, Location l) {
-        image.paintIcon(c, g, l.row*90, l.column*90); // you'll need to update the last two parameters so that it will 
+        image.paintIcon(c, g, l.column*90, l.row*90); // you'll need to update the last two parameters so that it will 
         											  // correctly draw the piece in the right location.
     }
 
@@ -76,4 +80,7 @@ public class Piece {
 	public void setPlayer(int player) {
 		this.player = player;
 	}
+	
+	
+	
 }
