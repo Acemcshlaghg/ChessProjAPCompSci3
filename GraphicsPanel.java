@@ -153,6 +153,20 @@ public class GraphicsPanel extends JPanel implements MouseListener {
 			g2.setColor(Color.blue);
 			g2.drawString("BLACK WINS", 300, 300);
 		}
+				// promote white pawn
+		for (int i = 0; i < board[0].length; i++) {
+			if (board[0][i] instanceof Pawn && board[0][i].getPlayer() == 1) {
+				board[0][i] = new Queen(2);
+				this.repaint();
+			}
+		}
+		//promote black pawn
+		for (int i = 0; i < board[7].length; i++) {
+			if (board[7][i] instanceof Pawn && board[7][i].getPlayer() == 2) {
+				board[7][i] = new Queen(1);
+				this.repaint();
+			}
+		}
 	}
 
 	@Override
