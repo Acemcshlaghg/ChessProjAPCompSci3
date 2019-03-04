@@ -55,11 +55,11 @@ public class Pawn extends Piece {
 								// piece
 								(from.getRow() >= 1 && b[from.getColumn() + 1][from.getRow() - 1] != null
 										&& b[from.getColumn() + 1][from.getRow() - 1].getPlayer() == 1
-										&& (to.getRow() == from.getRow() - 1 && to.getColumn() == from.getColumn() + 1)
+										&& (to.getRow() == from.getRow() - 1 && to.getColumn() == from.getColumn() + 1))
 										||
 										// moving forward general
-										to.getRow() == from.getRow() && to.getColumn() == from.getColumn() + 1
-												&& b[to.getRow()][to.getColumn()] == null)))))
+										(to.getRow() == from.getRow() && to.getColumn() == from.getColumn() + 1
+												&& b[to.getColumn()][to.getRow()] == null)))))
 			return true;
 		else
 			return false;
