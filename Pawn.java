@@ -14,15 +14,15 @@ public class Pawn extends Piece{
 
 		//white team
 
-		if(getPlayer() == 1 && 
+		if(getPlayer() == 2 && 
 		// moving forward general		
 		(to.getRow() == from.getRow() && to.getColumn() == from.getColumn() + 1 && b[to.getRow()][to.getColumn()] == null) ||
 		// moving forward 2 on first move
 		(from.getColumn() == 1 && to.getRow() == from.getRow() && to.getColumn() == from.getColumn() + 2 && b[to.getRow()][to.getColumn()] == null) ||
 		// kill to the right								// makes sure you actually want to kill that piece		
-		(b[from.getRow() + 1][from.getColumn() + 1] != null && b[from.getRow() + 1][from.getColumn() + 1].getPlayer() == 2 && to.getRow() == from.getRow() + 1 && to.getColumn() == from.getColumn() + 1 ) || 
-		// "catch and kill" to the left								// makes sure you actually want to kill that piece
-		(b[from.getRow() - 1][from.getColumn() + 1] != null && b[from.getRow() - 1][from.getColumn() + 1].getPlayer() == 2 && (to.getRow() == from.getRow() - 1 && to.getColumn() == from.getColumn() + 1) )		
+		(from.getRow()-1 != -1 && b[from.getRow() + 1][from.getColumn() + 1] != null && b[from.getRow() + 1][from.getColumn() + 1].getPlayer() == 2 && to.getRow() == from.getRow() + 1 && to.getColumn() == from.getColumn() + 1 ) || 
+		// kill to the left								// makes sure you actually want to kill that piece
+		(from.getRow()-1 != -1 && b[from.getRow() - 1][from.getColumn() + 1] != null && b[from.getRow() - 1][from.getColumn() + 1].getPlayer() == 2 && (to.getRow() == from.getRow() - 1 && to.getColumn() == from.getColumn() + 1) )		
 				) {
 				return true;
 			}
@@ -31,14 +31,14 @@ public class Pawn extends Piece{
 
 		//black Team
 
-		else if(getPlayer() == 2 && 
+		else if(getPlayer() == 1 && 
 		// moving forward general		
 		(to.getRow() == from.getRow() && to.getColumn() == from.getColumn() - 1 && b[to.getRow()][to.getColumn()] == null) ||
 		// moving forward 2 on first move
 		(from.getColumn() == 6 && to.getRow() == from.getRow() && to.getColumn() == from.getColumn() - 2 && b[to.getRow()][to.getColumn()] == null) ||
-		// "catch and kill" to the right								// makes sure you actually want to kill that piece		
+		// kill to the right								// makes sure you actually want to kill that piece		
 		(b[from.getRow() + 1][from.getColumn() - 1] != null && b[from.getRow() + 1][from.getColumn() - 1].getPlayer() == 1 && to.getRow() == from.getRow() + 1 && to.getColumn() == from.getColumn() - 1 ) || 
-		// "catch and kill" to the left								// makes sure you actually want to kill that piece
+		// kill to the left								// makes sure you actually want to kill that piece
 		(b[from.getRow() - 1][from.getColumn() - 1] != null && b[from.getRow() - 1][from.getColumn() - 1].getPlayer() == 1 && (to.getRow() == from.getRow() - 1 && to.getColumn() == from.getColumn() - 1) )		
 				) {
 				return true;
