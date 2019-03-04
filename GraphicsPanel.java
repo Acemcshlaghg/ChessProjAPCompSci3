@@ -155,6 +155,7 @@ public class GraphicsPanel extends JPanel implements MouseListener{
 			whiteKingCount = 0;
 			blackKingCount = 0;
 		}
+
 	}
 
 	@Override
